@@ -32,7 +32,7 @@ document.getElementById("studentForm").addEventListener("submit", (event) => {
       violence:getRadioValue("violence")
       
 
-      // เพิ่มข้อมูลอื่น ๆ ตามที่ต้องการ
+      
     };
   
     return formData;
@@ -87,6 +87,8 @@ document.getElementById("studentForm").addEventListener("submit", (event) => {
 
 
   function decisionTree(context) {
+
+   
 
     // var res 
     // Late > 1.500
@@ -258,7 +260,7 @@ document.getElementById("studentForm").addEventListener("submit", (event) => {
                   return 'close_up'
               } else{
                   if(context.writing >0.5){
-                      if(context.Not_passing > 0.5){
+                      if(context.not_passing > 0.5){
                           // return {care:109 , close_up:0 , trust:0}
                           return 'care'
                       } else {
@@ -296,8 +298,9 @@ document.getElementById("studentForm").addEventListener("submit", (event) => {
           return 'close_up'
         }
       }else{
-          // return {care:0, close_up:7, trust:0}
-          return 'close_up'
+          // return '{care:0, close_up:0, trust:7}'
+          
+          return 'trust'
       }
     }
   }
