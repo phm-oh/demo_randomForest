@@ -1,0 +1,105 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Kanit&display=swap');
+
+
+
+body {
+    font-family: 'Itim', cursive;
+    font-family: 'Kanit', sans-serif;
+    margin: 20px;
+    background-color: #f0eded;
+  }
+  
+  h2 {
+    color: rgb(4, 93, 165);
+    text-align: center;
+  }
+  
+  .student-form {
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+    border: 0px;
+    width: 25px;
+    height: 2em;
+  }
+  
+  input[type="submit"] {
+    background-color: rgb(4, 93, 165);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color:rgb(4, 26, 44);
+  }
+  
+  /* Optional: Style the form sections */
+  .student-form section {
+    margin-bottom: 20px;
+  }
+  
+  /* Optional: Add some spacing to the form */
+  .student-form label,
+  .student-form input,
+  .student-form select {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Optional: Style radio buttons and labels */
+  .radio-group {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+    color: #022503;
+
+    
+  }
+  
+  .radio-group label {
+    margin-right: 40px;
+    font-weight:400;
+  }
+  
+  /* Optional: Add padding to the form */
+  .student-form {
+    padding: 30px;
+  }
+
+  .headd{
+    color: rgb(4, 93, 165);
+    font-weight: 600;
+    margin-left: 30px;
+  }
+  
+  

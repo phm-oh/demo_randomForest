@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Kanit&display=swap');
+
+
+
+
+
+body {
+    font-family: 'Itim', cursive;
+    font-family: 'Kanit', sans-serif;
+   
+    background-color: #277bbd;
+    
+    margin: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .result-container {
+    background-color: #f2eeee;
+    width: 800px;
+    height: 400px;
+    margin: 50px;
+    padding: 65px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(27, 26, 26, 0.6);
+    text-align: center;
+  }
+  
+  h2 {
+    color: rgb(4, 93, 165);
+    font-size: 48px;
+  }
+  
+  .result-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    margin-top: 10px;
+    color: #555;
+    font-size: 26px;
+  }
+  
+  span {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: rgb(4, 93, 165);
+  }
+  

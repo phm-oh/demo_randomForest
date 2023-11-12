@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบจำลองการคัดกรอง นักเรียนนักศ๊กษา โดยใช้โมเดล Random Forest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>แบบจำลองการคัดกรอง นักเรียนนักศึกษา </h2>
+
+  <form action="#" method="post" class="student-form" id="studentForm">
+    <!-- ข้อมูลผู้เรียน -->
+    <label for="studentName">ชื่อ-นามสกุลของผู้เรียน</label>
+    <input type="text" id="studentName" name="studentName" >
+
+    <label for="classLevel">ระดับชั้น</label>
+    <input type="text" id="classLevel" name="classLevel" >
+
+    <label for="major">สาขาวิชา</label>
+    <input type="text" id="major" name="major" >
+
+    <label for="enrollmentStatus">สถานะการเรียน</label>
+    <select id="enrollmentStatus" name="enrollmentStatus">
+      <option value="normal">ปกติ</option>
+      <option value="special">ทวิภาคี</option>
+    </select>
+
+    <!-- ข้อมูลการเรียน -->
+    <h3>1.ด้านการเรียน</h3>
+    <section>
+      <label class="headd">1.1 ผลการเรียน</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="grade" value="0">
+        <label for="pass">ผลการเรียน 2.00 ขึ้นไป</label>
+        
+        <input type="radio" id="average" name="grade" value="1">
+        <label for="average">ผลการเรียนเฉลี่ย 1.00-1.99</label>
+        
+        <input type="radio" id="fail" name="grade" value="2">
+        <label for="fail">ผลการเรียนเฉลี่ยต่ำกว่า 1.00</label>
+      </div>
+      
+
+      <label for="attendance" class="headd">1.2 การเข้าเรียน</label>
+      <div class="radio-group">
+        <input type="radio" id="lessThan3" name="late" value="0">
+        <label for="lessThan3">มาเรียนสายน้อยกว่า 3 ครั้งต่อ 1 รายวิชา</label>
+
+        <input type="radio" id="3to5" name="late" value="1">
+        <label for="3to5">มาเรียนสาย 3-5 ครั้ง ต่อ 1 รายวิชา</label>
+
+        <input type="radio" id="moreThan5" name="late" value="2">
+        <label for="moreThan5">มาเรียนสายมากกว่า 5 ครั้งต่อ 1 วิชา</label>
+      </div>
+
+      <label for="attendance" class="headd">1.3 ผลการเรียนที่ไม่ผ่าน</label>
+      <div class="radio-group">
+        <input type="radio" id="lessThan3" name="not_pass" value="0">
+        <label for="lessThan3">ไม่มีผลการเรียน 0 มส ขร ขส</label>
+
+        <input type="radio" id="3to5" name="not_pass" value="1">
+        <label for="3to5"> มีผล 0 มส ขร ขส รวมแล้ว 1-5 วิชาใน 1 ภาคเรียน</label>
+
+        <input type="radio" id="moreThan5" name="not_pass" value="2">
+        <label for="moreThan5">มีผล 0 มส ขร ขส รวมแล้วมากกว่า 5 วิชาใน 1 ภาคเรียน</label>
+      </div>
+
+
+      <label for="attendance" class="headd">1.4 การอ่าน</label>
+      <div class="radio-group">
+        <input type="radio" id="lessThan3" name="reading" value="0">
+        <label for="lessThan3"> อ่านหนังสือคล่อง</label>
+
+        <input type="radio" id="3to5" name="reading" value="1">
+        <label for="3to5"> อ่านหนังสือไม่คล่อง</label>
+
+        <input type="radio" id="moreThan5" name="reading" value="2">
+        <label for="moreThan5">อ่านหนังสือไม่ออก</label>
+      </div>
+
+
+      <label for="attendance" class="headd">1.5 การเขียน</label>
+      <div class="radio-group">
+        <input type="radio" id="lessThan3" name="writing" value="0">
+        <label for="lessThan3"> เขียนได้</label>
+
+        <input type="radio" id="3to5" name="writing" value="1">
+        <label for="3to5"> เขียนหนังสือไม่ถูก</label>
+ 
+      </div>
+
+    </section>
+
+
+
+
+    <h3>2.ด้านสุขภาพ</h3>
+    <section>
+      <label class="headd">2.1 โรคประจำตัว</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="disease" value="0">
+        <label for="pass">ไม่มีโรคประจำตัว</label>
+        
+        <input type="radio" id="average" name="disease" value="1">
+        <label for="average">มีโรคประจำตัวหรือเจ็บป่วยบ่อย</label>
+        
+        <input type="radio" id="fail" name="disease" value="2">
+        <label for="fail">ป่วยเป็นโรคร้ายแรง/เรื้อรัง</label>
+      </div>
+
+      <label class="headd">2.2 ความบกพร่องทางสายตา</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="visual" value="0">
+        <label for="pass">สายตาปกติ</label>
+        
+        <input type="radio" id="average" name="visual" value="1">
+        <label for="average">มีความบกพร่องทางสายตาต้องสวมแว่น หรือ คอนแท็คเลนส์</label>
+        
+        <input type="radio" id="fail" name="visual" value="2">
+        <label for="fail">มีความบกพร่อง หรือ พิการทางสายตา</label>
+      </div>
+
+      <label class="headd">2.3 ความบกพร่องทางการได้ยิน</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="hearing" value="0">
+        <label for="pass">การได้ยินปกติ</label>
+        
+        <input type="radio" id="average" name="hearing" value="1">
+        <label for="average">มีความบกพร่องทางการได้ยินต้องใช้อุปกรณ์ช่วย</label>
+        
+        <input type="radio" id="fail" name="hearing" value="2">
+        <label for="fail">มีความบกพร่อง หรือ พิการทางการได้ยิน</label>
+      </div>
+
+      <label class="headd">2.4 อารมณ์</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="mood" value="0">
+        <label for="pass">อารมณ์ปกติ</label>
+        
+        <input type="radio" id="average" name="mood" value="1">
+        <label for="average">หงุดหงิด ฉุนเฉียว  อารมณ์รุนแรง</label>
+        
+        <input type="radio" id="fail" name="mood" value="2">
+        <label for="fail">เก็บตัว แยกตัวจาก กลุ่มเพื่อน</label>
+      </div>
+      
+      
+
+    </section>
+
+
+
+    <h3>3.ด้านสังคม</h3>
+    <section>
+      <label class="headd">3.1 การปรับตัวเข้ากับสังคม</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="socializing" value="0">
+        <label for="pass">เข้ากับเพื่อนได้ปกติ</label>
+        
+        <input type="radio" id="average" name="socializing" value="1">
+        <label for="average">ไม่สามารถปรับตัวเข้ากับเพื่อนได้</label>
+        
+        <input type="radio" id="fail" name="socializing" value="2">
+        <label for="fail">แยกตัวอยู่ตามลำพัง</label>
+      </div>
+
+      
+    </section>
+
+
+    <h3>4.ด้านเศรษฐกิจ</h3>
+    <section>
+      <label class="headd">4.1 รายได้ครอบครัว</label>
+      <div class="radio-group">
+        <input type="radio" id="income" name="income" value="0">
+        <label for="pass">รายได้ 15,000 บาท ขึ้นไป</label>
+        
+        <input type="radio" id="income" name="income" value="1">
+        <label for="average">รายได้ต่ำกว่า 15,000 บาท</label>
+        
+        <input type="radio" id="income" name="income" value="2">
+        <label for="fail">รายได้ต่ำกว่า 5,000 บาท</label>
+      </div>
+
+      
+    </section>
+
+
+    <h3>5.ด้านการคุ้มครองผู้เรียน</h3>
+    <section>
+      <label class="headd">5.1 ที่อยู่อาศัย</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="commodation" value="0">
+        <label for="pass">อยู่บ้าน</label>
+        
+        <input type="radio" id="average" name="commodation" value="1">
+        <label for="average">อยู่หอพัก</label>
+
+      </div>
+
+
+      <label class="headd">5.2 สถานะการสมรสของพ่อแม่</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="status_f_m" value="0">
+        <label for="pass">สมรส</label>
+        
+        <input type="radio" id="average" name="status_f_m" value="1">
+        <label for="average">พ่อแม่แยกทางกันหรือสมรสใหม่</label>
+
+      </div>
+
+      <label class="headd">5.3 การเล่นพนัน</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="gambling" value="0">
+        <label for="pass">ไม่มีการเล่นพนันในครอบครัว</label>
+        
+        <input type="radio" id="average" name="gambling" value="1">
+        <label for="average">มีการเล่นพนันในครอบครัว</label>
+
+      </div>
+
+      <label class="headd">5.4 ความรุนแรงในครอบครัว</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="violence" value="0">
+        <label for="pass">มีความขัดแย้งและความรุนแรงในครอบครัว</label>
+        
+        <input type="radio" id="average" name="violence" value="1">
+        <label for="average">ไม่มีความขัดแย้งและความรุนแรงในครอบครัว</label>
+
+      </div>
+    </section>
+
+
+    <h3>6.ด้านสารเสพติด</h3>
+    <section>
+      <label class="headd">6.1 เสพยา</label>
+      <div class="radio-group">
+        <input type="radio" id="pass" name="drug" value="0">
+        <label for="pass">ใช่</label>
+        
+        <input type="radio" id="average" name="drug" value="1">
+        <label for="average">ไม่ใช่</label>
+        
+      </div>
+
+      
+    </section>
+
+
+
+
+
+    
+
+    <input type="submit" value="submit">
+    
+    
+  </form>
+
+
+  <script type="module"  src="test3.js"></script>
+
+</body>
+</html>
